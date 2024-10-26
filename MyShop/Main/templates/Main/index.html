@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Witch Happiness{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="site-blocks-cover" style="background-image: url({% static 'Main/images/shop.png' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
+                    <div class="site-block-cover-content text-center">
+                        <h2 class="sub-title">Mystical Remedies, Enchanting Elixirs, Spellbinding Potions</h2>
+                        <h1>Welcome Home, Witch</h1>
+                        <p>
+                            <a href="{% url 'catalog' %}" class="btn btn-primary px-5 py-3">Оформить заказ сейчас.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row align-items-stretch section-overlap">
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="banner-wrap bg-dark text-white h-100 d-flex flex-column justify-content-center align-items-center">
+                        <a  class="text-white text-center">
+                            <h5>Эксклюзивные Товары</h5>
+                            <p>
+                                У нас уникальные эзотерические предметы, которые сложно найти где-либо еще.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="banner-wrap bg-dark text-white h-100 d-flex flex-column justify-content-center align-items-center">
+                        <a  class="text-white text-center">
+                            <h5>Качество и Надежность</h5>
+                            <p>
+                                Мы гарантируем высокое качество всех наших товаров.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="banner-wrap bg-dark text-white h-100 d-flex flex-column justify-content-center align-items-center">
+                        <a  class="text-white text-center">
+                            <h5>Международная Доставка</h5>
+                            <p>
+                                Доставка уникальных товаров со всего мира.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="title-section text-center col-12">
+                    <h2 class="text-uppercase">Наша продукция</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 block-3 products-wrap">
+                    <div class="nonloop-block-3 owl-carousel">
+                        {% for model in objects %}
+                            <div class="text-center item mb-4">
+                                {% if model.photo %}
+                                    <a href="{% url 'productt' model.pk %}"><img src="{{ model.photo.url }}" alt="Image"></a>
+                                    <h3 class="text-dark"><a href="{% url 'productt' model.pk %}">{{ model.name }}</a></h3>
+                                    <p class="price">{{ model.price }}</p>
+                                {% else %}
+                                    <a href="{% url 'productt' model.pk %}"><img src="{% static 'Main/img/lol.png' %}" alt="Image"></a>
+                                    <h3 class="text-dark"><a href="{% url 'productt' model.pk %}">{{ model.name }}</a></h3>
+                                    <p class="price">{{ model.price }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

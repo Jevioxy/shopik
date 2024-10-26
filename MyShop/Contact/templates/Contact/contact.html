@@ -1,0 +1,106 @@
+{% extends  'base.html' %}
+{% load static %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block header %}
+    {%include 'inc/header.html' %}
+{% endblock %}
+
+{% block content %}
+   <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="{% url 'index' %}">Главная</a> <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Обратная связь</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            {% if success %}
+            <!-- Если сообщение отправлено, отображаем благодарность -->
+            <div class="text-center">
+              <h2 class="h3 mb-5 text-black">Спасибо за сообщение!</h2>
+              <h2 class="h3 mb-5 text-black">В ближайшем времени с вами свяжется специалист!</h2>
+            </div>
+            {% else %}
+            <!-- В противном случае показываем форму -->
+            <h2 class="h3 mb-5 text-black">Связаться</h2>
+            <form action="#" method="post">
+                {% csrf_token %}
+                <div class="p-3 p-lg-5 border">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="c_fname" class="text-black">Имя <span class="text-danger">*</span></label>
+                            {{ form.name }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_lname" class="text-black">Фамилия <span class="text-danger">*</span></label>
+                            {{ form.surname }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="c_email" class="text-black">Адрес электронной почты <span class="text-danger">*</span></label>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="c_subject" class="text-black">Тема</label>
+                            {{ form.subject }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="c_message" class="text-black">Сообщение</label>
+                            {{ form.message }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Отправить сообщение">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-primary">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-white mb-4">Офисы (приходить не советуем, убьют)</h2>
+          </div>
+          <div class="col-lg-4">
+            <div class="p-4 bg-white mb-3 rounded">
+              <span class="d-block text-black h6 text-uppercase">Новосибирск</span>
+              <p class="mb-0">ул. Зловещая, дом 13,подъезд 9, Новосибирск, Россия</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="p-4 bg-white mb-3 rounded">
+              <span class="d-block text-black h6 text-uppercase">Москва</span>
+              <p class="mb-0">Адрес: пер. Проклятый,дом  7, Москва, Россия</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="p-4 bg-white mb-3 rounded">
+              <span class="d-block text-black h6 text-uppercase">Санкт-Петербург</span>
+              <p class="mb-0">ул. Мрачная, дом 42, Гробовые Врата, Санкт-Петербург, Россия</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
